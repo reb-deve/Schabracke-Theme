@@ -330,4 +330,9 @@ function create_team_cpt() {
 }
 add_action('init', 'create_team_cpt');
 
+add_filter ('wp_image_editors', 'wpse303391_change_graphic_editor');
+function wpse303391_change_graphic_editor ($array) {
+    return array( 'WP_Image_Editor_GD', 'WP_Image_Editor_Imagick' );
+    }
+
 ?>
