@@ -301,6 +301,33 @@ function create_program_cpt() {
     ]);
 }
 add_action('init', 'create_program_cpt');
+// Register Partner CPT
+function create_partner_cpt() {
+    register_post_type('partner', [
+        'labels' => [
+            'name' => 'Partner',
+            'singular_name' => 'Partner'
+        ],
+        'public' => true,
+        'has_archive' => false,
+        'menu_icon' => 'dashicons-groups',
+        'supports' => ['title', 'editor', 'thumbnail', 'custom-fields'], 
+    ]);
+}
+add_action('init', 'create_partner_cpt');
 
+function create_team_cpt() {
+    register_post_type('team', [
+        'labels' => [
+            'name' => 'Team',
+            'singular_name' => 'Teammitglied'
+        ],
+        'public' => true,
+        'has_archive' => false,
+        'menu_icon' => 'dashicons-id',
+        'supports' => ['title', 'editor', 'thumbnail', 'custom-fields'],
+    ]);
+}
+add_action('init', 'create_team_cpt');
 
 ?>

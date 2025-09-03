@@ -34,7 +34,7 @@
                     </span>
                     <span class="by">
                         <?php _e('Education Zone | Developed By', 'schabracke'); ?>
-                        <a href="https://rarathemes.com/" target="_blank" rel="noopener noreferrer">Rara Themes</a>.
+                        <a href="https://rebvar.info/" target="_blank" rel="noopener noreferrer">Rebvar Ebrahimi</a>.
                         <?php _e('Powered by', 'schabracke'); ?>
                         <a href="https://wordpress.org/" target="_blank" rel="noopener noreferrer">WordPress</a>.
                     </span>
@@ -57,8 +57,8 @@
 // Default footer menu fallback
 function schabracke_default_footer_menu() {
     $footer_links = array(
-        array('title' => __('Impressum', 'schabracke'), 'url' => home_url('/impressum/')),
-        array('title' => __('Datenschutzerklärung', 'schabracke'), 'url' => get_privacy_policy_url()),
+        array('title' => __('Impressum', 'schabracke'), 'url' => home_url('/kontakt/')),
+        array('title' => __('Datenschutzerklärung', 'schabracke'), 'url' => home_url('/datenschutzerklaerung/')),
         array('title' => __('Das Team', 'schabracke'), 'url' => home_url('/team/')),
         array('title' => __('Partner', 'schabracke'), 'url' => home_url('/partner/')),
         array('title' => __('Vermietung', 'schabracke'), 'url' => home_url('/vermietung/')),

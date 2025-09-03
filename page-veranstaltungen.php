@@ -129,7 +129,7 @@ get_header(); ?>
     <?php endif; ?>
 
     <!-- Calendar Subscription -->
-    <div class="mt-8 bg-white p-6 rounded-lg shadow-sm">
+    <!-- <div class="mt-8 bg-white p-6 rounded-lg shadow-sm">
       <h3 class="text-lg font-semibold mb-4"><?php esc_html_e('Subscribe', 'schabracke'); ?></h3>
       <div class="space-y-2 text-sm">
         <a href="#" class="text-blue-600 hover:underline block">Add to Timely Calendar</a>
@@ -139,7 +139,7 @@ get_header(); ?>
         <a href="#" class="text-blue-600 hover:underline block">Add to other calendar</a>
         <a href="#" class="text-blue-600 hover:underline block">Export to XML</a>
       </div>
-    </div>
+    </div> -->
 
   </div>
 </main>
