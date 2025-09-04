@@ -83,9 +83,9 @@ get_header();
             </div>
 
             <!-- Sidebar -->
-            <div class="lg:col-span-1">
-                <?php get_sidebar(); ?>
-            </div>
+           <div class="lg:col-span-1">
+        <?php get_sidebar(); ?>
+      </div>
         </div>
     </div>
 </main>

@@ -33,12 +33,12 @@ function schabracke_setup() {
 }
 add_action('after_setup_theme', 'schabracke_setup');
 // Redirect /events/ archive to /veranstaltungen/
-add_action('template_redirect', function() {
+/* add_action('template_redirect', function() {
     if (is_post_type_archive('event')) {
         wp_redirect(home_url('/veranstaltungen/'));
         exit;
     }
-});
+}); */
 
 
 // Enqueue scripts and styles
@@ -170,8 +170,11 @@ function schabracke_excerpt_more($more) {
 }
 add_filter('excerpt_more', 'schabracke_excerpt_more');
 
+
+
+
 // Helper function to get events
-function schabracke_get_upcoming_events($limit = 5) {
+/* function schabracke_get_upcoming_events($limit = 5) {
     $events = get_posts(array(
         'post_type' => 'event',
         'posts_per_page' => $limit,
@@ -188,10 +191,88 @@ function schabracke_get_upcoming_events($limit = 5) {
     ));
 
     return $events;
+} */
+/* function schabracke_get_upcoming_events($limit = 5) {
+    $events = get_posts(array(
+        'post_type'      => 'tribe_events', // correct CPT name from The Events Calendar
+        'posts_per_page' => $limit,
+        'meta_key'       => '_EventStartDate',
+        'orderby'        => 'meta_value',
+        'order'          => 'ASC',
+        'meta_query'     => array(
+            array(
+                'key'     => '_EventStartDate',
+                'value'   => current_time('mysql'), // compare with current datetime
+                'compare' => '>=',
+                'type'    => 'DATETIME',
+            )
+        )
+    ));
+
+    return $events;
+} */
+// Get upcoming events from The Events Calendar
+function schabracke_get_upcoming_events($limit = 5) {
+    $events = get_posts(array(
+        'post_type'      => 'tribe_events',
+        'posts_per_page' => $limit,
+        'meta_key'       => '_EventStartDate',
+        'orderby'        => 'meta_value',
+        'order'          => 'ASC',
+        'suppress_filters' => false, // ensure WPML or theme filters don’t block events
+        'meta_query'     => array(
+            array(
+                'key'     => '_EventStartDate',
+                'value'   => current_time('mysql'),
+                'compare' => '>=',
+                'type'    => 'DATETIME',
+            )
+        )
+    ));
+
+    // Debug: see if events are being fetched
+    if (empty($events)) {
+        error_log('schabracke_get_upcoming_events: No events found');
+    }
+
+    return $events;
 }
+
 
 // Add custom contact info to customizer
 function schabracke_customize_register($wp_customize) {
+   $wp_customize->add_section('schabracke_opening_hours', array(
+        'title'       => __('Öffnungszeiten', 'schabracke'),
+        'priority'    => 30,
+        'description' => __('Bearbeite hier die Öffnungszeiten für die Sidebar.', 'schabracke'),
+    ));
+
+    // Days array
+    $days = array(
+        'monday'    => __('Montag', 'schabracke'),
+        'tuesday'   => __('Dienstag', 'schabracke'),
+        'wednesday' => __('Mittwoch', 'schabracke'),
+        'thursday'  => __('Donnerstag', 'schabracke'),
+        'friday'    => __('Freitag', 'schabracke'),
+        'sunday'    => __('Erster Sonntag im Monat', 'schabracke'),
+    );
+
+    foreach ($days as $key => $label) {
+        $setting_id = 'schabracke_hours_' . $key;
+
+        $wp_customize->add_setting($setting_id, array(
+            'default'   => '',
+            'transport' => 'refresh',
+            'sanitize_callback' => 'sanitize_text_field',
+        ));
+
+        $wp_customize->add_control($setting_id, array(
+            'label'   => $label,
+            'section' => 'schabracke_opening_hours',
+            'type'    => 'text',
+        ));
+    }
+
     // Contact section
     $wp_customize->add_section('schabracke_contact', array(
         'title' => __('Contact Information', 'schabracke'),
@@ -267,6 +348,13 @@ function schabracke_get_events_calendar() {
 
     return $calendar_events;
 }
+function schabracke_enqueue_calendar() {
+    wp_enqueue_style('fullcalendar-css', 'https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.css');
+    wp_enqueue_script('fullcalendar-js', 'https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js', ['jquery'], null, true);
+    wp_enqueue_script('schabracke-calendar', get_template_directory_uri() . '/js/calendar.js', ['fullcalendar-js'], null, true);
+}
+add_action('wp_enqueue_scripts', 'schabracke_enqueue_calendar');
+
 // TEMP: Load Tailwind via CDN to verify styling
 function schabracke_tailwind_cdn_for_testing() {
     if (is_admin()) return; // front-end only

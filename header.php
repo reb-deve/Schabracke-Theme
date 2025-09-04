@@ -66,7 +66,7 @@
                             <div class="site-logo">
                                 <img src="https://c8.alamy.com/comp/M85JWE/berlin-zehlenfdorf-residence-historic-traditional-house-yellow-exterior-M85JWE.jpg"
                                      alt="<?php bloginfo('name'); ?>"
-                                     width="128" height="64">
+                                     width="512" height="512">
                             </div>
                         <?php endif; ?>
 

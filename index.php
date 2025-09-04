@@ -113,35 +113,35 @@ get_header();
                     <div class="events-list">
                         <?php
                         $upcoming_events = schabracke_get_upcoming_events(5);
-                        if (!empty($upcoming_events)) :
-                            foreach ($upcoming_events as $event) :
-                                $event_date = get_post_meta($event->ID, '_event_date', true);
-                                $event_time = get_post_meta($event->ID, '_event_time', true);
-
-                                if ($event_date) :
-                                    $date_obj = DateTime::createFromFormat('Y-m-d', $event_date);
-                                    $day_month = $date_obj ? $date_obj->format('M j') : '';
-                                    $day_name = $date_obj ? $date_obj->format('D') : '';
+                       if (!empty($upcoming_events)) : ?>
+                            <?php foreach ($upcoming_events as $event) : 
+                                    $event_date = get_post_meta($event->ID, '_EventStartDate', true);
+                                    $event_end  = get_post_meta($event->ID, '_EventEndDate', true);
+                                    $date_obj   = $event_date ? new DateTime($event_date) : null;
+                                    $day_month  = $date_obj ? $date_obj->format('M j') : '';
+                                    $day_name   = $date_obj ? $date_obj->format('D') : '';
+                                    $event_time = $date_obj ? $date_obj->format('H:i') : '';
                         ?>
-                            <div class="event-item">
-                                <div class="event-date-badge">
-                                    <?php echo esc_html($day_month . ' ' . $day_name); ?>
-                                </div>
-                                <?php if ($event_time) : ?>
-                                    <span class="event-time"><?php echo esc_html($event_time); ?></span>
-                                <?php endif; ?>
-                                <h4 class="event-title"><?php echo esc_html($event->post_title); ?></h4>
-                                <?php if ($event->post_excerpt) : ?>
-                                    <p class="event-description"><?php echo esc_html($event->post_excerpt); ?></p>
-                                <?php endif; ?>
+                        <div class="event-item">
+                            <div class="event-date-badge">
+                                <?php echo esc_html($day_month . ' ' . $day_name); ?>
                             </div>
-                        <?php
-                                endif;
-                            endforeach;
-                        else :
-                        ?>
+                            <?php if ($event_time) : ?>
+                                <span class="event-time"><?php echo esc_html($event_time); ?></span>
+                            <?php endif; ?>
+                            <h4 class="event-title">
+                            <a href="<?php echo get_permalink($event->ID); ?>">
+                            <?php echo esc_html($event->post_title); ?>
+                            </a>
+                            </h4>
+                            <?php if ($event->post_excerpt) : ?>
+                            <p class="event-description"><?php echo esc_html($event->post_excerpt); ?></p>
+                            <?php endif; ?>
+                            </div>
+                            <?php endforeach; ?>
+                            <?php else : ?>
                             <p><?php _e('No upcoming events scheduled.', 'schabracke'); ?></p>
-                        <?php endif; ?>
+                            <?php endif; ?>
                     </div>
                 </div>
             </div>
@@ -174,44 +174,43 @@ get_header();
             </div>
 
             <!-- Opening Hours -->
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/><path d="M12.5 7H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
-                        </svg>
-                        <?php _e('ÖFFNUNGSZEITEN', 'schabracke'); ?>
-                    </h3>
-                </div>
-                <div class="card-content">
-                    <div class="opening-hours">
-                        <div class="hours-row">
-                            <span class="hours-day"><?php _e('Montag', 'schabracke'); ?></span>
-                            <span class="hours-time">13:00 – 20:00 Uhr</span>
-                        </div>
-                        <div class="hours-row">
-                            <span class="hours-day"><?php _e('Dienstag', 'schabracke'); ?></span>
-                            <span class="hours-time">13:00 – 20:00 Uhr</span>
-                        </div>
-                        <div class="hours-row">
-                            <span class="hours-day"><?php _e('Mittwoch', 'schabracke'); ?></span>
-                            <span class="hours-time">15:00 – 20:00 Uhr</span>
-                        </div>
-                        <div class="hours-row">
-                            <span class="hours-day"><?php _e('Donnerstag', 'schabracke'); ?></span>
-                            <span class="hours-time">13:00 – 20:00 Uhr</span>
-                        </div>
-                        <div class="hours-row">
-                            <span class="hours-day"><?php _e('Freitag', 'schabracke'); ?></span>
-                            <span class="hours-time">13:00 – 20:00 Uhr</span>
-                        </div>
-                        <div class="hours-row">
-                            <span class="hours-day"><?php _e('ersten Sonntag im Monat', 'schabracke'); ?></span>
-                            <span class="hours-time">12:00 – 19:00 Uhr</span>
-                        </div>
+           <div class="card">
+    <div class="card-header">
+        <h3 class="card-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/>
+                <path d="M12.5 7H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+            </svg>
+            <?php _e('ÖFFNUNGSZEITEN', 'schabracke'); ?>
+        </h3>
+    </div>
+    <div class="card-content">
+        <div class="opening-hours">
+            <?php
+            $days = array(
+                'monday'    => __('Montag', 'schabracke'),
+                'tuesday'   => __('Dienstag', 'schabracke'),
+                'wednesday' => __('Mittwoch', 'schabracke'),
+                'thursday'  => __('Donnerstag', 'schabracke'),
+                'friday'    => __('Freitag', 'schabracke'),
+                'sunday'    => __('Erster Sonntag im Monat', 'schabracke'),
+            );
+
+            foreach ($days as $key => $label) :
+                $hours = get_theme_mod('schabracke_hours_' . $key, '');
+                if (!empty($hours)) : ?>
+                    <div class="hours-row">
+                        <span class="hours-day"><?php echo esc_html($label); ?></span>
+                        <span class="hours-time"><?php echo esc_html($hours); ?></span>
                     </div>
-                </div>
-            </div>
+                <?php endif;
+            endforeach;
+            ?>
+        </div>
+    </div>
+</div>
+
+
 
             <!-- Sponsors Section -->
             <div class="card">

@@ -143,9 +143,11 @@ get_header();
                     </p>
                 </div>
             </div>
+            
 
         </div>
     </div>
+    
 </div>
 
 <?php
