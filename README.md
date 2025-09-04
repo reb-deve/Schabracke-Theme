@@ -1,42 +1,110 @@
-# Schabracke Theme
+# Schabracke WordPress Theme
+
+![WordPress Version](https://img.shields.io/badge/WordPress-6.x-blue?logo=wordpress) ![PHP Version](https://img.shields.io/badge/PHP-8.x-blue?logo=php) ![License](https://img.shields.io/badge/License-GPLv2%2B-green)
 
 ![Schabracke Theme Screenshot](screenshot.png)
 
-## Description
+---
 
-Schabracke is a custom WordPress theme designed for a youth center website. It includes:
+## 🌟 Description
 
-- Custom post types for Team and Events
-- Dynamic pages for Angebote, Partner, Datenschutz, and more
-- Category archive templates
-- Fully responsive layout with TailwindCSS styling
-- Sidebar with recent posts, categories, and upcoming events
+**Schabracke** is a custom WordPress theme designed for a youth center website.  
+It features modern responsive design using TailwindCSS, dynamic pages, and a structured layout for events, team, partners, and more.
 
-## Installation
+**Key Features:**
+
+- Custom post types: **Team**, **Events**
+- Custom pages: `page-angebot.php`, `page-partner.php`, `page-team.php`, `page-datenschutzerklaerung.php`
+- Responsive grid layout for archives, posts, and sidebars
+- Sidebar with **recent posts**, **categories**, and **upcoming events**
+- Fully editable pages without plugins (custom fields optional)
+- Styled cards and components for a modern, clean look
+
+---
+
+## 🖥️ Screenshots
+
+**Home Page**  
+![Home Page](images/homepage.png)
+
+**Team Page**  
+![Team Page](images/team-page.png)
+
+**Angebote Page**  
+![Angebote Page](images/angebote-page.png)
+
+---
+
+## 🚀 Installation
 
 1. Upload the `Schabracke` theme folder to your WordPress installation under `wp-content/themes/`.
 2. Activate the theme via **Appearance → Themes**.
-3. Ensure all required pages and categories are created.
+3. Create the required pages (`Angebote`, `Team`, `Partner`, `Datenschutzerklärung`) and assign the correct templates.
+4. Flush permalinks: **Settings → Permalinks → Save Changes**.
+5. Add posts and categorize them (e.g., “Aktuelles”).
 
-## Usage
+---
 
-- **Custom Pages:**  
-  Use `page-angebot.php`, `page-partner.php`, `page-team.php`, `page-datenschutzerklaerung.php` for specific content layouts.
-- **Team Members:**  
-  Add team members using the **Team** custom post type. Fill out Position, Email, Phone in the meta box.
-- **Events:**  
-  Add events with date, time, and location using the Events custom post type.
+## 🛠️ Usage
 
-## Screenshots
+### Custom Pages
+- `page-angebot.php` – dynamic Angebote page
+- `page-partner.php` – list of partners
+- `page-team.php` – team members listing
+- `page-datenschutzerklaerung.php` – privacy page
 
-![Home Page](images/homepage.png)  
-![Team Page](images/team-page.png)
+### Team Members
+- Add members using **Team** custom post type.
+- Fill meta fields: Position, Email, Phone, Photo.
 
-## Notes
+### Events
+- Add events with custom meta: Date, Time, Location.
+- Displayed dynamically in sidebar and archives.
 
-- Make sure **Custom Fields** are enabled for pages where needed.
-- Re-save **Permalinks** after adding new categories or custom post types.
+### Posts
+- Add posts and assign **categories**.
+- “Read more” links go to `single.php` for full post view.
 
-## License
+---
 
-This theme is free to use and modify.  
+## ⚡ Recommended Plugins (Optional)
+
+- **Classic Editor** or **Gutenberg** (for editing content)
+- **Advanced Custom Fields** (optional, for more complex fields)
+- **WP Event Manager** (if you want extended event management)
+
+---
+
+## 📝 License
+
+This theme is released under the **GPL v2+** license.  
+You are free to use, modify, and distribute it.
+
+---
+
+## 📦 Folder Structure
+
+Schabracke/
+├─ css/
+├─ js/
+├─ images/
+├─ template-parts/
+│ └─ content.php
+├─ page-angebot.php
+├─ page-partner.php
+├─ page-team.php
+├─ page-datenschutzerklaerung.php
+├─ single.php
+├─ archive.php
+├─ category-aktuelles.php
+├─ functions.php
+├─ style.css
+└─ README.md
+
+---
+
+## 🔗 Links
+
+- [WordPress.org](https://wordpress.org/)
+- [TailwindCSS](https://tailwindcss.com/)
+- [GitHub Repository](https://github.com/your-repo/schabracke-theme)
