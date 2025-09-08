@@ -107,4 +107,4 @@ Schabracke/
 
 - [WordPress.org](https://wordpress.org/)
 - [TailwindCSS](https://tailwindcss.com/)
-- [GitHub Repository](https://github.com/your-repo/schabracke-theme)
+- [GitHub Repository](https://github.com/reb-dev/schabracke-theme)
