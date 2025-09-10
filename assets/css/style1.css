@@ -42,7 +42,6 @@ body {
 
 /* Header styles */
 .site-header {
-    
     background-color: #3b82f6;
     color: white;
     padding: 0.5rem 0;
@@ -95,8 +94,8 @@ body {
 
 /* Main header with logo and search */
 .main-header {
-    background-color: rgb(209, 14, 14);
-    padding: 1.5rem  0;
+    background-color: white;
+    padding: 1.5rem 0;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
@@ -110,19 +109,23 @@ body {
 .site-branding {
     display: flex;
     align-items: center;
-    gap: 1.5rem; /* space between logo and site title */
+    gap: 1rem;
 }
 
 .site-logo {
-    max-width: 250px; /* adjust as you want */
-    height: auto;
+    width: auto;           
+    height: auto;          
+    max-width: 200px;      
+    max-height: 120px;     
+    border-radius: 0.25rem;
+    overflow: hidden;
 }
 
 .site-logo img {
-    height: 80px;  /* fixed height */
-    width: auto;   /* keeps proportions */
+    width: 100%;
+    height: auto;          
+    object-fit: contain;   
 }
-
 
 
 .site-title-group h1 {

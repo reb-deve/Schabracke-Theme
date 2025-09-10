@@ -13,7 +13,7 @@
 <div id="page" class="site">
     <a class="sr-only" href="#main"><?php _e('Skip to content', 'schabracke'); ?></a>
 
-    <header id="masthead" class="site-header">
+    <header id="masthead" class="site-header ">
         <!-- Top Header with Contact Info -->
         <div class="header-top">
             <div class="container">
@@ -32,7 +32,7 @@
                     </a>
                 </div>
 
-                <div class="service-menu">
+                <!-- <div class="service-menu">
                     <button class="service-dropdown" onclick="toggleServiceMenu()">
                         <?php _e('Servicebereich', 'schabracke'); ?>
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
@@ -48,27 +48,27 @@
                             'fallback_cb' => false,
                         ));
                         ?>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
 
         <!-- Main Header with Logo and Search -->
-        <div class="main-header">
-            <div class="container">
+        <div class="container ">
+            <div class=" main-header">
                 <div class="header-content">
                     <div class="site-branding">
-                        <?php if (has_custom_logo()) : ?>
-                            <div class="site-logo">
-                                <?php the_custom_logo(); ?>
-                            </div>
-                        <?php else : ?>
-                            <div class="site-logo">
-                                <img src="https://c8.alamy.com/comp/M85JWE/berlin-zehlenfdorf-residence-historic-traditional-house-yellow-exterior-M85JWE.jpg"
-                                     alt="<?php bloginfo('name'); ?>"
-                                     width="512" height="512">
-                            </div>
-                        <?php endif; ?>
+                       <?php if (has_custom_logo()) : ?>
+    <div class="site-logo">
+        <?php the_custom_logo(); ?>
+    </div>
+<?php else : ?>
+    <div class="site-logo">
+        <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/logo.png"
+             alt="<?php bloginfo('name'); ?>">
+    </div>
+<?php endif; ?>
+
 
                         <div class="site-title-group">
                             <?php if (is_front_page() && is_home()) : ?>

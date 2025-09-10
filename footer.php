@@ -1,6 +1,6 @@
 </main><!-- #main -->
 
-    <footer id="colophon" class="site-footer">
+    <footer id="colophon" class=" site-footer">
         <div class="container">
             <!-- Footer Menu Links -->
             <div class="footer-content">
